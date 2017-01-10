@@ -4,7 +4,7 @@
     android:id="@+id/activity_travel_advice_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.semrekkers.traveladvice.TravelAdviceDetailActivity">
+    tools:context="com.semrekkers.traveladvice.ReisAdviesDetailActivity">
 
     <WebView
         android:layout_width="match_parent"

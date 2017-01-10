@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="5dp">
+
+    <TextView
+        android:text="Location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationTextView"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:layout_weight="4" />
+
+    <TextView
+        android:text="Last modified"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lastModifiedTextView"
+        android:background="@android:color/darker_gray"
+        android:textColor="@android:color/black"
+        android:layout_weight="1" />
+</LinearLayout>
