@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView travelAdviceListView;
 
-    private ReisAdviesApiClient client;
+    private TravelAdviceApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,20 +26,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         travelAdviceListView = (ListView) findViewById(R.id.travelAdviceListView);
-        client = new ReisAdviesApiClient(this);
+        client = new TravelAdviceApiClient(this);
 
         populateTravelAdviceListView();
-
-        /* For populating the ListView with dummy data */
-        //populateTravelAdviceListViewDummy();
     }
 
     public void populateTravelAdviceListView() {
-        client.requestAdviezen(new ReisAdviesApiClient.DataHandler() {
+        client.requestTravelAdvices(new TravelAdviceApiClient.DataHandler() {
             @Override
-            public void onDataReady(ArrayList<ReisAdviesItem> data) {
+            public void onDataReady(ArrayList<TravelAdvice> data) {
                 Log.i(TAG, "Data is ready");
-                travelAdviceListView.setAdapter(new ReisAdviesArrayAdapter(getApplicationContext(), data));
+                travelAdviceListView.setAdapter(new TravelAdviceArrayAdapter(getApplicationContext(), data));
             }
 
             @Override
@@ -56,17 +53,12 @@ public class MainActivity extends AppCompatActivity {
         travelAdviceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ReisAdviesItem item = (ReisAdviesItem) adapterView.getAdapter().getItem(i);
-                Intent intent = new Intent(MainActivity.this, ReisAdviesDetailActivity.class);
-                intent.putExtra(ReisAdviesDetailActivity.EXTRA_TRAVELADVICE_ITEM, item);
+                TravelAdvice item = (TravelAdvice) adapterView.getAdapter().getItem(i);
+                Intent intent = new Intent(MainActivity.this, TravelAdviceDetailActivity.class);
+                intent.putExtra(TravelAdviceDetailActivity.EXTRA_TRAVELADVICE_ITEM, item);
                 startActivity(intent);
             }
         });
-    }
-
-    public void populateTravelAdviceListViewDummy() {
-        ArrayList<ReisAdviesItem> data = ReisAdviesItem.getDummyData();
-        travelAdviceListView.setAdapter(new ReisAdviesArrayAdapter(getApplicationContext(), data));
     }
 
     private void handleException(Exception ex) {

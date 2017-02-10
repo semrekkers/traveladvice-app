@@ -5,18 +5,15 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.webkit.WebView;
 
-public class ReisAdviesDetailActivity extends AppCompatActivity {
-
-    public static final String TAG = "ReisDetailActivity";
+public class TravelAdviceDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_TRAVELADVICE_ITEM = "EXTRA_TRAVELADVICE_ITEM";
 
     private WebView detailWebView;
-    private ReisAdviesItem reisAdviesItem;
+    private TravelAdvice travelAdvice;
     private ActionBar actionBar;
 
     @Override
@@ -30,12 +27,7 @@ public class ReisAdviesDetailActivity extends AppCompatActivity {
         detailWebView = (WebView) findViewById(R.id.detailWebView);
 
         Intent intent = getIntent();
-
-        if (!intent.hasExtra(EXTRA_TRAVELADVICE_ITEM)) {
-            Log.d(TAG, "EXTRA_TRAVELADVICE_ITEM was not found in Intent");
-        }
-
-        reisAdviesItem = (ReisAdviesItem) intent.getSerializableExtra(EXTRA_TRAVELADVICE_ITEM);
+        travelAdvice = (TravelAdvice) intent.getSerializableExtra(EXTRA_TRAVELADVICE_ITEM);
 
         init();
     }
@@ -51,7 +43,7 @@ public class ReisAdviesDetailActivity extends AppCompatActivity {
     }
 
     private void init() {
-        detailWebView.loadUrl(reisAdviesItem.Canonical);
-        actionBar.setTitle(reisAdviesItem.Title);
+        detailWebView.loadUrl(travelAdvice.Canonical);
+        actionBar.setTitle(travelAdvice.Title);
     }
 }

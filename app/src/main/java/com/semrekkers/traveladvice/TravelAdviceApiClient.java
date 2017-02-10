@@ -16,27 +16,27 @@ import java.util.ArrayList;
  * Created by Sem Rekkers on 9-1-2017.
  */
 
-public class ReisAdviesApiClient {
+public class TravelAdviceApiClient {
     public static final String ENDPOINT = "https://opendata.rijksoverheid.nl/v1/sources/rijksoverheid/infotypes/traveladvice?output=json";
 
     private Context context;
     private RequestQueue queue;
 
-    public ReisAdviesApiClient(Context context) {
+    public TravelAdviceApiClient(Context context) {
         this.context = context;
         queue = Volley.newRequestQueue(context);
     }
 
-    public JsonArrayRequest requestAdviezen(final DataHandler handler, Response.ErrorListener errorListener) {
+    public JsonArrayRequest requestTravelAdvices(final DataHandler handler, Response.ErrorListener errorListener) {
         JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, ENDPOINT, null,
                 new Response.Listener<JSONArray>() {
 
                     @Override
                     public void onResponse(JSONArray response) {
-                        ArrayList<ReisAdviesItem> list = new ArrayList<>();
+                        ArrayList<TravelAdvice> list = new ArrayList<>();
                         try {
                             for (int i = 0; i < response.length(); i++) {
-                                list.add(new ReisAdviesItem(response.getJSONObject(i)));
+                                list.add(new TravelAdvice(response.getJSONObject(i)));
                             }
                         }
                         catch (Exception ex) {
@@ -52,7 +52,7 @@ public class ReisAdviesApiClient {
     }
 
     public interface DataHandler {
-        void onDataReady(ArrayList<ReisAdviesItem> data);
+        void onDataReady(ArrayList<TravelAdvice> data);
         void onDataException(Exception ex);
     }
 }

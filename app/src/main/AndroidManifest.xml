@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ReisAdviesDetailActivity"
+        <activity android:name=".TravelAdviceDetailActivity"
             android:parentActivityName=".MainActivity">
         </activity>
     </application>
